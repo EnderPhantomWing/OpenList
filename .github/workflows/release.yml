@@ -31,7 +31,7 @@ jobs:
           swap-storage: true
 
       - name: Prerelease
-        uses: irongut/EditRelease@v1.2.0
+        uses: irongut/EditRelease@latest
         with:
           token: ${{ secrets.MY_TOKEN }}
           id: ${{ github.event.release.id }}
