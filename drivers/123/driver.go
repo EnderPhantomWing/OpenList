@@ -96,6 +96,7 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 		if err != nil {
 			return nil, err
 		}
+		u_ := ou.String()
 		nu := ou.Query().Get("params")
 		if nu != "" {
 			du, _ := base64.StdEncoding.DecodeString(nu)
@@ -104,16 +105,16 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 				return nil, err
 			}
 		}
-		u_ = u.String()
+		nu_ = u.String()
 
-		log.Debug("download url: ", u_)
-		res, err := base.NoRedirectClient.R().SetHeader("Referer", "https://www.123pan.com/").Get(u_)
+		log.Debug("download url: ", nu_)
+		res, err := base.NoRedirectClient.R().SetHeader("Referer", "https://www.123pan.com/").Get(nu_)
 		if err != nil {
 			return nil, err
 		}
 		log.Debug(res.String())
 		link := model.Link{
-			URL: u_,
+			URL: nu_,
 		}
 		log.Debugln("res code: ", res.StatusCode())
 		if res.StatusCode() == 302 {
