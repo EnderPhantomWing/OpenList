@@ -64,17 +64,6 @@ func (d *Pan123) List(ctx context.Context, dir model.Obj, args model.ListArgs) (
 
 func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) (*model.Link, error) {
 	if f, ok := file.(File); ok {
-		var headers map[string]string
-		if !utils.IsLocalIPAddr(args.IP) {
-			headers = map[string]string{
-				//"X-Real-IP":       "1.1.1.1",
-				"X-Forwarded-For": args.IP,
-				"user-agent":  "123pan/v2.4.0(Android_7.1.2;Xiaomi)",
-				"platform":    "android",
-				"app-version": "61",
-				"x-app-version": "2.4.0",
-			}
-		}
 		data := base.Json{
 			"driveId":   0,
 			"etag":      f.Etag,
@@ -86,13 +75,13 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 		}
 		resp, err := d.Request(DownloadInfo, http.MethodPost, func(req *resty.Request) {
 
-			req.SetBody(data).SetHeaders(headers)
+			req.SetBody(data)
 		}, nil)
 		if err != nil {
 			return nil, err
 		}
 		downloadUrl := utils.Json.Get(resp, "data", "DownloadUrl").ToString()
-		u, err := url.Parse(downloadUrl)
+		ou, err := url.Parse(downloadUrl)
 		if err != nil {
 			return nil, err
 		}
@@ -100,21 +89,21 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 		nu := ou.Query().Get("params")
 		if nu != "" {
 			du, _ := base64.StdEncoding.DecodeString(nu)
-			u, err = url.Parse(string(du))
+			u, err := url.Parse(string(du))
 			if err != nil {
 				return nil, err
 			}
+			u_ = u.String()
 		}
-		nu_ = u.String()
 
-		log.Debug("download url: ", nu_)
-		res, err := base.NoRedirectClient.R().SetHeader("Referer", "https://www.123pan.com/").Get(nu_)
+		log.Debug("download url: ", u_)
+		res, err := base.NoRedirectClient.R().SetHeader("Referer", "https://www.123pan.com/").Get(u_)
 		if err != nil {
 			return nil, err
 		}
 		log.Debug(res.String())
 		link := model.Link{
-			URL: nu_,
+			URL: u_,
 		}
 		log.Debugln("res code: ", res.StatusCode())
 		if res.StatusCode() == 302 {
@@ -123,7 +112,7 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 			link.URL = utils.Json.Get(res.Body(), "data", "redirect_url").ToString()
 		}
 		link.Header = http.Header{
-			"Referer": []string{"https://www.123pan.com/"},
+			"Referer": []string{fmt.Sprintf("%s://%s/", ou.Scheme, ou.Host)},
 		}
 		return &link, nil
 	} else {
