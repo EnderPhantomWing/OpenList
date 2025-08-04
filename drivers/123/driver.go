@@ -64,6 +64,17 @@ func (d *Pan123) List(ctx context.Context, dir model.Obj, args model.ListArgs) (
 
 func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) (*model.Link, error) {
 	if f, ok := file.(File); ok {
+		var headers map[string]string
+		if !utils.IsLocalIPAddr(args.IP) {
+			headers = map[string]string{
+				//"X-Real-IP":       "1.1.1.1",
+				"X-Forwarded-For": args.IP,
+				"user-agent":  "123pan/v2.4.0(Android_7.1.2;Xiaomi)",
+				"platform":    "android",
+				"app-version": "61",
+				"x-app-version": "2.4.0",
+			}
+		}
 		data := base.Json{
 			"driveId":   0,
 			"etag":      f.Etag,
