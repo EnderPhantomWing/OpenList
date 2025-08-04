@@ -86,26 +86,25 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 		}
 		resp, err := d.Request(DownloadInfo, http.MethodPost, func(req *resty.Request) {
 
-			req.SetBody(data)
+			req.SetBody(data).SetHeaders(headers)
 		}, nil)
 		if err != nil {
 			return nil, err
 		}
 		downloadUrl := utils.Json.Get(resp, "data", "DownloadUrl").ToString()
-		ou, err := url.Parse(downloadUrl)
+		u, err := url.Parse(downloadUrl)
 		if err != nil {
 			return nil, err
 		}
-		u_ := ou.String()
 		nu := ou.Query().Get("params")
 		if nu != "" {
 			du, _ := base64.StdEncoding.DecodeString(nu)
-			u, err := url.Parse(string(du))
+			u, err = url.Parse(string(du))
 			if err != nil {
 				return nil, err
 			}
-			u_ = u.String()
 		}
+		u_ = u.String()
 
 		log.Debug("download url: ", u_)
 		res, err := base.NoRedirectClient.R().SetHeader("Referer", "https://www.123pan.com/").Get(u_)
@@ -123,7 +122,7 @@ func (d *Pan123) Link(ctx context.Context, file model.Obj, args model.LinkArgs) 
 			link.URL = utils.Json.Get(res.Body(), "data", "redirect_url").ToString()
 		}
 		link.Header = http.Header{
-			"Referer": []string{fmt.Sprintf("%s://%s/", ou.Scheme, ou.Host)},
+			"Referer": []string{"https://www.123pan.com/"},
 		}
 		return &link, nil
 	} else {
