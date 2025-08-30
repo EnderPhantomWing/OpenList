@@ -1,4 +1,4 @@
-## NamingConventions
+## Naming Conventions
 v4.0.10-alpha.3<br>
 v4: 		Large version number<br>
 .0: 		Minor version number<br>
