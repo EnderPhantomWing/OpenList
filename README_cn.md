@@ -146,4 +146,4 @@ N/A（待重建）
 
 感谢这些优秀的人：
 
-[![Contributors](https://contrib.rocks/image?repo=OpenListTeam/OpenList)](https://github.com/OpenListTeam/OpenList/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=EnderPhantomWing/OpenList)](https://github.com/EnderPhantomWing/OpenList/graphs/contributors)
