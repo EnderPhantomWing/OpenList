@@ -146,4 +146,4 @@ N/A（再構築中）
 
 素晴らしい皆様に感謝します：
 
-[![Contributors](https://contrib.rocks/image?repo=OpenListTeam/OpenList)](https://github.com/OpenListTeam/OpenList/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=EnderPhantomWing/OpenList)](https://github.com/EnderPhantomWing/OpenList/graphs/contributors)
