@@ -146,4 +146,4 @@ Wij danken de auteur [Xhofe](https://github.com/Xhofe) van het originele project
 
 Dank aan deze geweldige mensen:
 
-[![Contributors](https://contrib.rocks/image?repo=OpenListTeam/OpenList)](https://github.com/OpenListTeam/OpenList/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=EnderPhantomWing/OpenList)](https://github.com/EnderPhantomWing/OpenList/graphs/contributors)
