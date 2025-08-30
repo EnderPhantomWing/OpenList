@@ -5,7 +5,7 @@
 
   <img src="https://goreportcard.com/badge/github.com/OpenListTeam/OpenList/v3" alt="latest version" />
   <a href="https://github.com/EnderPhantomWing/OpenList/blob/main/LICENSE"><img src="https://img.shields.io/github/license/EnderPhantomWing/OpenList" alt="License" /></a>
-  <a href="https://github.com/EnderPhantomWing/OpenList/actions/?query=workflow%3ABeta%20Release%20builds"><img src="https://img.shields.io/github/actions/workflow/status/EnderPhantomWing/OpenList/beta_release.yml?branch=main" alt="Build status" /></a>
+  <a href="https://github.com/OpenListTeam/OpenList/actions/workflows/beta_release.yml"><img src="https://img.shields.io/github/actions/workflow/status/EnderPhantomWing/OpenList/beta_release.yml?branch=main" alt="Build status" /></a>
   <a href="https://github.com/EnderPhantomWing/OpenList/releases"><img src="https://img.shields.io/github/v/release/EnderPhantomWing/OpenList" alt="latest version" /></a>
 
   <a href="https://github.com/EnderPhantomWing/OpenList/discussions"><img src="https://img.shields.io/github/discussions/EnderPhantomWing/OpenList?color=%23ED8936" alt="discussions" /></a>
