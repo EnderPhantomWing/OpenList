@@ -61,9 +61,10 @@ func (d *Pan123Share) request(url string, method string, callback base.ReqCallba
 		"origin":        "https://www.123pan.com",
 		"referer":       "https://www.123pan.com/",
 		"authorization": "Bearer " + d.AccessToken,
-		"user-agent":    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) openlist-client",
-		"platform":      "web",
-		"app-version":   "3",
+		"user-agent":    "123pan/v3.0.0(Android_15.0.0;Xiaomi)",
+		"app-version": "81",
+		"platform": "android",
+		"x-app-version": "3.0.0",
 		//"user-agent":    base.UserAgent,
 	})
 	if callback != nil {
