@@ -24,9 +24,9 @@ import (
 // do others that not defined in Driver interface
 
 const (
-	Api              = "https://www.123pan.com/api"
-	AApi             = "https://www.123pan.com/a/api"
-	BApi             = "https://www.123pan.com/b/api"
+	Api              = "https://yun.123pan.com/api"
+	AApi             = "https://yun.123pan.com/a/api"
+	BApi             = "https://yun.123pan.com/b/api"
 	LoginApi         = "https://login.123pan.com/api"
 	MainApi          = BApi
 	SignIn           = LoginApi + "/user/sign_in"
@@ -169,8 +169,8 @@ func (d *Pan123) login() error {
 	}
 	res, err := base.RestyClient.R().
 		SetHeaders(map[string]string{
-			"origin":      "https://www.123pan.com",
-			"referer":     "https://www.123pan.com/",
+			"origin":      "https://yun.123pan.com",
+			"referer":     "https://yun.123pan.com/",
 			"user-agent":  "Dart/2.19(dart:io)-openlist",
 			"platform":    "web",
 			"app-version": "3",
@@ -207,8 +207,8 @@ func (d *Pan123) Request(url string, method string, callback base.ReqCallback, r
 do:
 	req := base.RestyClient.R()
 	req.SetHeaders(map[string]string{
-		"origin":        "https://www.123pan.com",
-		"referer":       "https://www.123pan.com/",
+		"origin":        "https://yun.123pan.com",
+		"referer":       "https://yun.123pan.com/",
 		"authorization": "Bearer " + d.AccessToken,
 		"user-agent":    "123pan/v3.0.0(Android_15.0.0;Xiaomi)",
 		"app-version": "81",
